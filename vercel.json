@@ -2,24 +2,16 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.7.4" }
+        "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [
         {
-            "src": "/template/css/(.*)",
-            "dest": "/public/template/css/$1"
+            "src": "/(build|template|css|js|img|vendor|storage|fonts)/(.*)",
+            "dest": "/public/$1/$2"
         },
         {
-            "src": "/img/(.*)",
-            "dest": "/public/img/$1"
-        },
-        {
-            "src": "/template/js/(.*)",
-            "dest": "/public/template/js/$1"
-        },
-        {
-            "src": "/template/vendor/(.*)",
-            "dest": "/public/template/vendor/$1"
+            "src": "/(favicon.ico|robots.txt)",
+            "dest": "/public/$1"
         },
         {
             "src": "/(.*)",
@@ -28,8 +20,8 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "true",
-        "APP_URL": "",
+        "APP_DEBUG": "false",
+        "APP_URL": "https://${VERCEL_URL}",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
