@@ -7,12 +7,20 @@
     },
     "routes": [
         {
-            "src": "/(build|template|css|js|img|vendor|storage|fonts)/(.*)",
-            "dest": "/public/$1/$2"
+            "src": "/template/css/(.*)",
+            "dest": "/public/template/css/$1"
         },
         {
-            "src": "/(favicon.ico|robots.txt)",
-            "dest": "/public/$1"
+            "src": "/img/(.*)",
+            "dest": "/public/img/$1"
+        },
+        {
+            "src": "/template/js/(.*)",
+            "dest": "/public/template/js/$1"
+        },
+        {
+            "src": "/template/vendor/(.*)",
+            "dest": "/public/template/vendor/$1"
         },
         {
             "src": "/(.*)",
