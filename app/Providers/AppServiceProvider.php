@@ -2,26 +2,27 @@
 
 namespace App\Providers;
 
-use App\Models\Report; // <-- Import
-use App\Policies\ReportPolicy; // <-- Import
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL; // <--- PENTING: Import URL
 
-class AuthServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
-    protected $policies = [
-        Report::class => ReportPolicy::class, // <-- Daftarkan di sini
-    ];
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
 
+    /**
+     * Bootstrap any application services.
+     */
     public function boot(): void
     {
-        $this->registerPolicies();
-
-        // Beri akses superadmin & kecamatan untuk semua hal
-        Gate::before(function ($user, $ability) {
-            if ($user->hasRole('SUPERADMIN') || $user->hasRole('KECAMATAN')) {
-                return true;
-            }
-        });
+        // PENTING: Paksa HTTPS saat di Production (Vercel)
+        if($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
