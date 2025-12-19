@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    {{-- VVV PENTING: BARIS INI MENGATASI LAYOUT HANCUR DI VERCEL VVV --}}
+    {{-- ============================================================= --}}
+    {{-- VVV PENTING: BARIS INI SOLUSI UTAMA BIAR TIDAK HANCUR VVV --}}
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     {{-- ============================================================= --}}
 
@@ -15,36 +16,30 @@
 
     <title>@yield('title', 'Dashboard') | SIDAKEP</title>
 
+    {{-- Favicon --}}
     <link rel="icon" href="{{ asset('img/tsk.png') }}" type="image/png">
     
-    {{-- Pastikan path ini sesuai dengan struktur folder public Anda --}}
+    {{-- CSS Utama --}}
     <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{ asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
     
     @stack('styles')
 
-    {{-- ======================================================= --}}
-    {{-- VVV CSS BARU UNTUK LAYOUT FIXED VVV --}}
-    {{-- ======================================================= --}}
+    {{-- CSS Tambahan untuk Layout Fixed --}}
     <style>
-        /* 1. Atur html, body, dan #wrapper untuk mengisi seluruh layar */
         html, body, #wrapper {
             height: 100%;
-            overflow: hidden; /* Mencegah scrollbar di body utama */
+            overflow: hidden;
         }
-
-        /* 2. Atur #content-wrapper (kolom kanan) untuk mengisi tinggi layar juga */
         #content-wrapper {
             height: 100%;
             display: flex;
             flex-direction: column;
         }
-
-        /* 3. INI KUNCINYA: Jadikan #content sebagai satu-satunya area yang bisa di-scroll */
         #content {
-            flex: 1; /* Membuat #content mengisi semua ruang kosong yang tersisa */
-            overflow-y: auto; /* Menambahkan scrollbar HANYA di area ini */
+            flex: 1;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -97,7 +92,7 @@
         </div>
     </div>
 
-    {{-- Script JavaScript Inti --}}
+    {{-- Script JavaScript --}}
     <script src="{{ asset('template/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
@@ -106,5 +101,4 @@
     @stack('scripts')
 
 </body>
-
 </html>
